@@ -1,0 +1,8 @@
+# Miscellaneous Commands
+
+## Change Shell Prompt
+PS1="> "
+# This command sets the shell prompt to a simple "> " symbol.
+
+## Hide Present Working Directory in Prompt
+# By setting PS1 as above, the display of the present working directory is hidden from the prompt.
