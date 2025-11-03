@@ -1,6 +1,6 @@
 from contextlib import asynccontextmanager
 from pathlib import Path
-from typing import List, Optional
+from typing import List
 
 import pickle
 import fastapi as fapi
