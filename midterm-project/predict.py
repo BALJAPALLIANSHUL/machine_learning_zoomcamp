@@ -124,7 +124,7 @@ app = fapi.FastAPI(
 
 # --- API Endpoints ---
 
-@app.get("/", tags=["Health Check"])
+@app.get("/health", tags=["Health Check"])
 def health():
     """Health check endpoint to ensure the service is running."""
     return {"status": "ok", "model_loaded": _model is not None}
