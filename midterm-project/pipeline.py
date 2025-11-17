@@ -90,7 +90,7 @@ def train_model(df, target_column):
         'hectares', 'seedrate(in_kg)', 'lp_mainfield(in_tonnes)', 'nursery_area_(cents)', 
         'lp_nurseryarea(in_tonnes)', 'dap_20days', 'weed28d_thiobencarb', 
         'urea_40days', 'potassh_50days', 'micronutrients_70days', 'pest_60day(in_ml)',
-        'trash(in_bundles)' # Added this based on our 0.957 correlation finding
+        'trash(in_bundles)'
     ]
 
     PCA_RAIN_FEATURES = ['30drain(_in_mm)', '30_50drain(_in_mm)', '51_70drain(in_mm)', '71_105drain(in_mm)']

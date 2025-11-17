@@ -140,27 +140,15 @@ def predict(farm_data: FarmData):
         raise fapi.HTTPException(status_code=500, detail="Model not loaded")
     
     try:
-        # 1. Convert the Pydantic model to a dictionary
-        #    We use `by_alias=True` to get the original messy names
-        #    that the `RAW_COLUMN_MAP` in the pipeline expects.
-        #    *Correction*: The pipeline's *input* expects the *original* names,
-        #    but our `train_paddy_model.py` renames them *first*.
-        #    Let's check the train script...
-        #    Ah, `load_and_process_data` runs *before* `train_model`.
-        #    This means the pipeline was fitted on the *clean* names.
-        #    Therefore, we should use the *clean* names from the Pydantic model.
-        
-        # We must use `by_alias=False` (default) to get the clean Python names
-        raw_data_dict = farm_data.model_dump()
+        # 1. Convert the Pydantic model to a dictionary.
+        #    *** FIX: Use by_alias=True to get the clean column names ***
+        #    that the pipeline was trained on.
+        raw_data_dict = farm_data.model_dump(by_alias=True)
 
         # 2. Convert the single dict to a pandas DataFrame (1 row)
-        #    Our ColumnTransformer pipeline was fit on a DataFrame
-        #    and expects a DataFrame for prediction.
         raw_data_df = pd.DataFrame([raw_data_dict])
         
         # 3. Get the prediction
-        #    The _model object *is* the full pipeline.
-        #    It will preprocess the data and predict in one step.
         prediction = _model.predict(raw_data_df)
         
         # 4. Extract the single prediction value
@@ -184,7 +172,8 @@ def predict_batch(farm_data_list: List[FarmData]):
     
     try:
         # 1. Convert the list of Pydantic models to a list of dicts
-        dicts = [farm.model_dump() for farm in farm_data_list]
+        #    *** FIX: Use by_alias=True to get the clean column names ***
+        dicts = [farm.model_dump(by_alias=True) for farm in farm_data_list]
         
         # 2. Convert the list of dicts to a DataFrame
         raw_data_df = pd.DataFrame(dicts)
