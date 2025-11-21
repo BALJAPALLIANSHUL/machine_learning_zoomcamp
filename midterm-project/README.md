@@ -69,7 +69,7 @@ curl -X POST "http://127.0.0.1:8000/predict" -H "Content-Type: application/json"
 
 ## Deployment
 
-This API is deployed on Google Cloud Platform (GCP).
+This API is deployed on render.
 
 Live Service URL:
 https://paddy-yield-api.onrender.com/docs
