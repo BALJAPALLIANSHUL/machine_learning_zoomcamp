@@ -2,6 +2,12 @@ FROM python:3.10-slim
 
 WORKDIR /app
 
+# Install CPU-only PyTorch FIRST from official index
+RUN pip install --no-cache-dir \
+    torch==2.2.2+cpu \
+    --index-url https://download.pytorch.org/whl/cpu
+
+# Install the rest
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
