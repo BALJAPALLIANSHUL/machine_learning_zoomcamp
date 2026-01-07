@@ -1,6 +1,6 @@
 numpy
 pandas
 scikit-learn
-torch==2.2.*+cpu
+torch==2.2.2
 fastapi
 uvicorn
