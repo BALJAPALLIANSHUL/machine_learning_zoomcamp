@@ -166,9 +166,9 @@ docker build -t dropout-api .
 docker run -p 8000:8000 dropout-api
 ```
 
-API available at:
+API available at: (not ec2 but render because free tier is expired)
 ```
-http://<EC2_PUBLIC_IP>:8000/predict
+ https://student-dropout-prediction-ke7m.onrender.com/docs
 ```
 
 ---
